@@ -88,20 +88,40 @@ void loop() {
     }
      
   }
+  int batteryLevel = 49;
+  Serial.println(batteryLevel);
+  int oldBatteryLevel = 90;
+  batteryMonitor(batteryLevel, oldBatteryLevel);
+  delay(10000);
+  batteryLevel = 39;
+  Serial.println(batteryLevel);
+  batteryMonitor(batteryLevel, oldBatteryLevel);
+  delay(10000);
+  batteryLevel = 29;
+  Serial.println(batteryLevel);
+  batteryMonitor(batteryLevel, oldBatteryLevel);
+  delay(10000);
+  batteryLevel = 19;
+  Serial.println(batteryLevel);
+  batteryMonitor(batteryLevel, oldBatteryLevel);
+  delay(10000);
+  batteryLevel = 9;
+  Serial.println(batteryLevel);
+  batteryMonitor(batteryLevel, oldBatteryLevel);
+  delay(10000);
   
-  int batteryLevel = 57;
-  int oldBatteryLevel = 0;
-  for(int i = 0; i < 7; i++) {
-    oldBatteryLevel = batteryLevel;
-    batteryLevel = random(0, 100);
-    batteryMonitor(batteryLevel, oldBatteryLevel);
-    //Serial.println(oldBatteryLevel);
-    Serial.println(batteryLevel);
-  }
-  
-  
-  
-  delay(5000);
+  // testing code for battery fuel guage 
+//  int batteryLevel = 57;
+//  int oldBatteryLevel = 0;
+//  for(int i = 0; i < 1; i++) {
+//    oldBatteryLevel = batteryLevel;
+//    batteryLevel = random(0, 100);
+//    batteryMonitor(batteryLevel, oldBatteryLevel);
+//    //Serial.println(oldBatteryLevel);
+//    Serial.println(batteryLevel);
+//  }
+
+  delay(500);
 }
 
  void batteryMonitor(int batteryLevel, int oldBatteryLEvel) {
@@ -148,7 +168,12 @@ void convertAscii(int splitArray[3]){
 
   
   //write to terminal
+  //SerialBT.write('Battery Level:');
   for(int i=0; i<3; i++){
     SerialBT.write(batteryLevel[i]);
+    
+    delay(500);
+    
   }
+  SerialBT.write(100);
 }
